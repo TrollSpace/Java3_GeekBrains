@@ -6,6 +6,7 @@ public class Box<T extends Fruit> {
     private ArrayList<T> fullBox;
 
     public Box() {
+        fullBox = new ArrayList<>();
     }
 
     public void putFruitToBox(T fruit) {
@@ -22,5 +23,10 @@ public class Box<T extends Fruit> {
 
     public boolean compare(Box box){
         return this.getWeight() == box.getWeight();
+    }
+
+    public void replaceFruits(Box box){
+        box.fullBox.addAll(fullBox);
+        fullBox.clear();
     }
 }
