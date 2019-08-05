@@ -1,6 +1,5 @@
 package Lesson1;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,12 +16,38 @@ public class Main {
 
         System.out.println(toArrayList(data));
 
+        //Third task. check
 
+        Apple apple1 = new Apple();
+        Apple apple2 = new Apple();
+        Apple apple3 = new Apple();
 
+        Orange org1 = new Orange();
+        Orange org2 = new Orange();
+        Orange org3 = new Orange();
+
+        Box<Apple> appleBox = new Box<>();
+        Box<Orange> orangeBox = new Box<>();
+
+        appleBox.putFruitToBox(apple1);
+        appleBox.putFruitToBox(apple2);
+        appleBox.putFruitToBox(apple3);
+
+        orangeBox.putFruitToBox(org1);
+        orangeBox.putFruitToBox(org2);
+        orangeBox.putFruitToBox(org3);
+
+        System.out.println("Orange box weight: " + orangeBox.getWeight());
+        System.out.println("Apple box weight: " + appleBox.getWeight());
+
+        Box<Apple> newAppleBox = new Box<>();
+        newAppleBox.putFruitToBox(apple1);
+        appleBox.replaceFruits(newAppleBox);
+        System.out.println(appleBox.getWeight() + " " + newAppleBox.getWeight());
     }
 
     //Second task
-    private static <T> List<T> toArrayList(T[] inArr){
+    private static <T> List<T> toArrayList(T[] inArr) {
         return Arrays.asList(inArr);
     }
 

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="Lesson7.client.Controller">
+    <HBox fx:id="upperPanel">
+        <TextField HBox.hgrow="ALWAYS" promptText="Login" fx:id="loginField"/>
+        <PasswordField promptText="Password" onAction="#tryToAuth" fx:id="passField"/>
+        <Button text="Login" onAction="#tryToAuth"/>
+    </HBox>
+    <TextArea fx:id="chatArea" editable="false" VBox.vgrow="ALWAYS"/>
+    <HBox fx:id="bottomPanel" managed="false" visible="false">
+        <TextField fx:id="msgField" onAction="#sendMsg" promptText="Enter message..." HBox.hgrow="ALWAYS"/>
+        <Button text="Send" onAction="#sendMsg"/>
+    </HBox>
+</VBox>
