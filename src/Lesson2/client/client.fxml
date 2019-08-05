@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="Lesson7.client.Controller">
+<VBox alignment="CENTER" xmlns:fx="http://javafx.com/fxml" fx:controller="Lesson2.client.Controller">
     <HBox fx:id="upperPanel">
         <TextField HBox.hgrow="ALWAYS" promptText="Login" fx:id="loginField"/>
         <PasswordField promptText="Password" onAction="#tryToAuth" fx:id="passField"/>
