@@ -1,10 +1,19 @@
 package Lesson1;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+
+        List list = new ArrayList(3);
+        list.add(new Integer(100));
+        list.add(new Integer(200));
+        list.add(new Integer(300));
+        list.add(new Integer(400));
+        list.add(new Integer(400));
+        System.out.println("Size:" + list.size());
 
         //First task
         Integer[] data = {1, 2, 3, 4};
@@ -53,8 +62,10 @@ public class Main {
 
 
     private static <T> void change(T[] arr, int first, int second) {
-        T arrObj = arr[first];
-        arr[first] = arr[second];
-        arr[second] = arrObj;
+        if (arr.length != 0) {
+            T arrObj = arr[first];
+            arr[first] = arr[second];
+            arr[second] = arrObj;
+        }
     }
 }

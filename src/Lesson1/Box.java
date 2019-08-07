@@ -1,9 +1,10 @@
 package Lesson1;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Box<T extends Fruit> {
-    private ArrayList<T> fullBox;
+    private List<T> fullBox;
 
     public Box() {
         fullBox = new ArrayList<>();
