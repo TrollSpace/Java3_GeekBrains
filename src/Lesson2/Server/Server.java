@@ -2,7 +2,6 @@ package Lesson2.server;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
@@ -26,9 +25,8 @@ public class Server {
 
         try {
             authService.connect();
+            //Если проект большой с большим колличеством сообщений, то стартовать логирование лучше тут.
             serverSocket = new ServerSocket(8181);
-            FileOutputStream outFile = new FileOutputStream("123.txt");
-            ObjectOutputStream oos = new ObjectOutputStream(outFile);
             System.out.println("Server starting");
 
 
@@ -52,6 +50,7 @@ public class Server {
     }
 
     void broadcast(String message) {
+        //При небольшом колличестве - целесообразней лог открывать и записывать здесь.
         try (FileOutputStream fos = new FileOutputStream("history.txt", true)) {
             byte[] buffer = (message + "\n").getBytes();
             fos.write(buffer, 0, buffer.length);
