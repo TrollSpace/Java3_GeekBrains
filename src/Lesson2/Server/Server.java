@@ -1,6 +1,8 @@
 package Lesson2.server;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.List;
@@ -25,7 +27,10 @@ public class Server {
         try {
             authService.connect();
             serverSocket = new ServerSocket(8181);
+            FileOutputStream outFile = new FileOutputStream("123.txt");
+            ObjectOutputStream oos = new ObjectOutputStream(outFile);
             System.out.println("Server starting");
+
 
             while (true) {
                 socket = serverSocket.accept();
@@ -47,6 +52,12 @@ public class Server {
     }
 
     void broadcast(String message) {
+        try (FileOutputStream fos = new FileOutputStream("history.txt", true)) {
+            byte[] buffer = (message + "\n").getBytes();
+            fos.write(buffer, 0, buffer.length);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
         for (ClientHandler clientHandler : clients) {
             clientHandler.sendMsg(message);
         }
@@ -70,6 +81,5 @@ public class Server {
     void unsubscribe(ClientHandler clientHandler) {
         clients.remove(clientHandler);
     }
-
 
 }
