@@ -7,10 +7,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Controller {
@@ -64,7 +64,7 @@ public class Controller {
                     read();
                 } catch (IOException e) {
                     e.printStackTrace();
-                }   finally {
+                } finally {
                     close();
                 }
             }).start();
@@ -101,6 +101,7 @@ public class Controller {
             String str = in.readUTF();
             if (str.startsWith("/authOK")) {
                 setAutorized(true);
+                showHistory();
                 break;
             } else {
                 chatArea.appendText("str" + "\n");
@@ -128,6 +129,30 @@ public class Controller {
             msgField.requestFocus();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void showHistory() {
+        List<String> lines = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream("history.txt")))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                lines.add(line);
+            }
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        if (lines.size() > 100) {
+
+            for (int i = lines.size() - 100; i < lines.size(); i++) {
+                chatArea.appendText(lines.get(i) + "\n");
+            }
+        } else {
+            for (int i = 0; i < lines.size(); i++) {
+                chatArea.appendText(lines.get(i) + "\n");
+            }
         }
     }
 }
