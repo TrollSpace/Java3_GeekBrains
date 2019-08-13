@@ -2,11 +2,18 @@ package Lesson4;
 
 public class MainHW4 {
     public static void main(String[] args) {
+      Printer printer = new Printer();
+      Thread t1 = new Thread(()->printer.PrintA());
+      Thread t2 = new Thread(()->printer.PrintB());
+      Thread t3 = new Thread(()->printer.PrintC());
 
+      t1.start();
+      t2.start();
+      t3.start();
     }
 
 
-    public class Printer {
+    public static class Printer {
         public volatile char letter = 'A';
 
         public synchronized void PrintA() {
@@ -16,7 +23,7 @@ public class MainHW4 {
                     while (letter != 'A') {
                         this.wait();
                     }
-                    System.out.println('A');
+                    System.out.print('A');
                     letter = 'B';
                     this.notifyAll();
                 }
@@ -32,7 +39,7 @@ public class MainHW4 {
                     while (letter != 'B') {
                         this.wait();
                     }
-                    System.out.println('B');
+                    System.out.print('B');
                     letter = 'C';
                     this.notifyAll();
                 }
@@ -48,7 +55,7 @@ public class MainHW4 {
                     while (letter != 'C') {
                         this.wait();
                     }
-                    System.out.println('C');
+                    System.out.print('C');
                     letter = 'A';
                     this.notifyAll();
                 }
