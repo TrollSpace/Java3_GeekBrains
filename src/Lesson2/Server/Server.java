@@ -1,5 +1,7 @@
 package Lesson2.server;
 
+import org.apache.log4j.Logger;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -9,6 +11,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+
 class StartServer {
     public static void main(String[] args) {
         new Server();
@@ -16,33 +19,39 @@ class StartServer {
 }
 
 public class Server {
+    private final Logger logger;
+
     private List<ClientHandler> clients;
     ExecutorService executorService;
 
+    Logger getLogger() {
+        return logger;
+    }
 
     public Server() {
         AuthService authService = new AuthServiceImpl();
         clients = new CopyOnWriteArrayList<>();
         ServerSocket serverSocket = null;
         Socket socket = null;
-
+        logger = Logger.getLogger("serverlog");
 
         try {
             authService.connect();
             //Если проект большой с большим колличеством сообщений, то стартовать логирование лучше тут.
             serverSocket = new ServerSocket(8181);
-            System.out.println("Server starting");
+            logger.info("Server starting");
 
 
             while (true) {
                 socket = serverSocket.accept();
                 System.out.println("Client connect");
+                logger.info(String.format("Client %s connect.", socket.getPort()));
                 executorService = Executors.newCachedThreadPool();
                 Socket finalSocket = socket;
                 executorService.execute(() -> new ClientHandler(this, finalSocket));
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.info(e);
         } finally {
             try {
                 executorService.shutdown();
@@ -81,9 +90,11 @@ public class Server {
 
     void subscribe(ClientHandler clientHandler) {
         clients.add(clientHandler);
+        logger.info(String.format("Client %s logging.",clientHandler.getNick()));
     }
 
     void unsubscribe(ClientHandler clientHandler) {
+        logger.info(String.format("Client %s exit.",clientHandler.getNick()));
         clients.remove(clientHandler);
     }
 
