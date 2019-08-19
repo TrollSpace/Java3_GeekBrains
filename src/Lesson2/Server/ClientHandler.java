@@ -60,6 +60,8 @@ public class ClientHandler {
                     if (str.startsWith("/ch")) {
                         String[] tokens = str.split(" ", 2);
                         authService.changeNick(nick, tokens[1]);
+
+                        server.broadcast(nick + " теперь пишет под именем: " + tokens[1]);
                         nick = tokens[1];
                     }
 
