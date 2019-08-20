@@ -1,0 +1,13 @@
+[INFO ] 2019-08-19 23:19:47 serverlog - Server starting
+[INFO ] 2019-08-19 23:23:13 serverlog - Server starting
+[INFO ] 2019-08-19 23:23:26 serverlog - Client Socket[addr=/127.0.0.1,port=60681,localport=8181] connect.
+[INFO ] 2019-08-19 23:24:01 serverlog - Client Socket[addr=/127.0.0.1,port=60690,localport=8181] connect.
+[INFO ] 2019-08-19 23:26:11 serverlog - Client Socket[addr=/127.0.0.1,port=60707,localport=8181] connect.
+[INFO ] 2019-08-19 23:27:23 serverlog - Server starting
+[INFO ] 2019-08-19 23:27:47 serverlog - Client Socket[addr=/127.0.0.1,port=60730,localport=8181] connect.
+[INFO ] 2019-08-19 23:34:45 serverlog - Server starting
+[INFO ] 2019-08-19 23:35:06 serverlog - Client 60771 connect.
+[INFO ] 2019-08-19 23:50:33 serverlog - Server starting
+[INFO ] 2019-08-19 23:50:52 serverlog - Client 60869 connect.
+[INFO ] 2019-08-19 23:50:52 serverlog - Client null logging.
+[INFO ] 2019-08-19 23:51:01 serverlog - Client Masha exit.

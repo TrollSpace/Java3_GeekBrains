@@ -89,8 +89,8 @@ public class Controller {
     private void read() throws IOException {
         while (true) {
             String str = in.readUTF();
-            if (str.equalsIgnoreCase("/serverclosed")) {
-                break;
+            if (str.equalsIgnoreCase("/exit")) {
+                close();
             }
             chatArea.appendText(str + "\n");
         }

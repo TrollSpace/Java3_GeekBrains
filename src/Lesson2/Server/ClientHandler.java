@@ -98,6 +98,7 @@ public class ClientHandler {
             in.close();
             out.close();
             socket.close();
+            server.unsubscribe(this);
         } catch (IOException e) {
             e.printStackTrace();
         }
