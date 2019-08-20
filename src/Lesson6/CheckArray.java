@@ -19,5 +19,9 @@ public class CheckArray {
         return res;
     }
 
+    public static boolean arrayOneAndFour(int[] arr){
+        return ((binarySearch(arr, 0, arr.length, 1) != -1)&&(binarySearch(arr, 0, arr.length, 4) != -1));
+    }
+
 }
 

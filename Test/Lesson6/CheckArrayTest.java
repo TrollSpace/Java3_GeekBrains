@@ -25,4 +25,30 @@ public class CheckArrayTest extends TestCase {
         int[] arr = {1, 2, 3, 5, 231, 321, 12, 1};
         Assert.assertArrayEquals(null, CheckArray.arrayAfterFour(arr));
     }
+
+    @Test
+    public void testNormalOnlyOneAndFour() {
+        int[] arr = {1, 1, 1, 4, 4, 4, 1, 1};
+        Assert.assertTrue(CheckArray.arrayOneAndFour(arr));
+    }
+
+    @Test
+    public void testAnyDataNormal() {
+        int[] arr = {1, 2, 3, 4, 5, 4, 0, 1};
+        Assert.assertTrue(CheckArray.arrayOneAndFour(arr));
+    }
+
+    @Test
+    public void testWrongData() {
+        int[] arr = { 2, 3, 6, 5, 2, 0, 9};
+        Assert.assertFalse(CheckArray.arrayOneAndFour(arr));
+    }
+
+    @Test
+    public void testEmptyArray() {
+        int[] arr = {};
+        Assert.assertFalse(CheckArray.arrayOneAndFour(arr));
+    }
+
+
 }
